@@ -1,1 +1,26 @@
-<p *ngFor="let comp of compService.compaings ">{{comp.campaignName}}</p>
+<div class="row">
+  <div class="col-12">
+    <h3>All Requests</h3>
+  </div>
+</div>
+
+<div class="row align-middle">
+  <div class="col-1 vertical-align-items">
+    <label>Filters:</label>
+  </div>
+  <div class="col-3">
+    <input class="comp-control comp-input" type="text" placeholder="Enter keyword.."/>
+  </div>
+  <div class="col-3">
+    <select class="comp-control comp-input select">
+      <option></option>
+      <option></option>
+    </select>
+  </div>
+
+  <div class="col-5" align="right">
+    <button class="comp-control comp-btn default">Filter</button>
+  </div>
+</div>
+
+<app-compaing-table></app-compaing-table>

@@ -1,0 +1,44 @@
+/* Variables */
+$table-row-height:                            100px;
+$table-row-radius:                            10px;
+$table-row-background:                        #f2f9ff;
+$table-row-content-status-border-right:       2px solid #cdd2d6;
+/* Styles definition */
+.table-row {
+  height: $table-row-height;
+  background: $table-row-background;
+  border-radius: $table-row-radius;
+  margin-left: 0;
+  margin-right: 0;
+  .table-row-content {
+    align-items: center;
+    height: 100%;
+    .table-row-content-status{
+      display: flex;
+      flex-direction: column;
+      border-right: $table-row-content-status-border-right;
+      .status-icon fa-icon.font-size-2-rem {
+        font-size: 2rem;
+      }
+    }
+    .table-row-content-name{
+      font-weight: 500;
+    }
+    .table-row-content-type{
+      padding: 5px;
+      color: white;
+      &.advice {
+        background-color: #e02c73;
+      }
+      &.request {
+        background-color: #7388a7;
+      }
+    }
+    .table-row-content-brand{
+      font-weight: bold;
+    }
+    .table-row-content-submissions{
+      font-weight: 500;
+    }
+  }
+}

@@ -1,3 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Global Variables */
+$control-default-border-radius: 5px;
+$input-default-height: 35px;
+$input-default-background: #f1f3f6;
+$input-default-border-color: #dbe0e8;
+$btn-default-background: #11305e;
+$btn-default-background-bold: #0b1e3e;
+
+/* Classes definitions */
+.container.bordered {
+  border: 1px solid black;
+  box-sizing: border-box;
+  .vertical-align-items {
+    display:flex;
+    align-items: center;
+    label {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .comp-control {
+    border-radius: $control-default-border-radius;
+
+    &.comp-input {
+      min-width: 100%;
+      min-height: $input-default-height;
+      background: $input-default-background;
+      border: 2px solid $input-default-border-color;
+      padding: 2px 15px;
+      box-sizing: border-box;
+    }
+
+    &.comp-btn {
+      min-width: 100px;
+      min-height: $input-default-height;
+      border: 1px solid $btn-default-background-bold;
+      cursor: pointer;
+      &.default {
+        background: $btn-default-background;
+        color: white;
+      }
+    }
+  }
+}

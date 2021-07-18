@@ -10,11 +10,13 @@ import {NgxMaskModule} from "ngx-mask";
 import {HttpClientModule} from "@angular/common/http";
 import {SharedGlobalModules} from "./_shared/_modules/shared-global-modules";
 import { HomeComponent } from './_pages/home/home.component';
+import { CompaingTableComponent } from './_shared/_components/compaing-table/compaing-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CompaingTableComponent
   ],
   imports: [
     BrowserModule,
