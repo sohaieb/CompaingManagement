@@ -49,6 +49,11 @@ $status-color-validated:                      #05ce8c;
     .table-row-content-name{
       font-weight: 500;
     }
+    .table-row-content-right-arrow {
+      fa-icon.font-size-2-rem {
+        font-size: 2rem;
+      }
+    }
     .table-row-content-type{
       padding: 5px;
       color: white;

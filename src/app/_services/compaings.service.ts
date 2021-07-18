@@ -23,13 +23,12 @@ export class CompaingsService {
       .pipe(
         map((result: any) => {
           let reqs = result.requests;
-          return reqs.filter((comp: any) => comp.campaignName.toLowerCase().includes(params.keyword) && (!params.brand || comp.brand.brandId === params.brand));
+          return reqs.filter((comp: any) => comp.campaignName.toLowerCase().includes(params.keyword) && (!params.brand || comp.brand.brandId == params.brand));
         }),
         finalize(()=> this.spinner.hide())
         )
       .subscribe(comps => {
         this.compaings = comps;
-        console.log(this.compaings);
       });
   }
 }

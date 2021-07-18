@@ -13,8 +13,8 @@
   </div>
   <div class="col-3">
     <select class="comp-control comp-input select" [(ngModel)]="searchObject.brand">
-      <option></option>
-      <option></option>
+      <option [value]="''">-</option>
+      <option *ngFor="let brand of brandsService.brands" [value]="brand.brandId">{{brand.name}}</option>
     </select>
   </div>
 

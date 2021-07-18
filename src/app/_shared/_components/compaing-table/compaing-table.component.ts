@@ -5,7 +5,8 @@ import {
   faCheckCircle,
   faTrash,
   faPaperPlane,
-  faPencilAlt
+  faPencilAlt,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import {CompaingStatusEnum} from "../../../_constants/CompaingStatusEnum";
@@ -23,6 +24,7 @@ export class CompaingTableComponent implements OnInit {
     [CompaingStatusEnum.DRAFT]: faTrash,
     [CompaingStatusEnum.TO_MODIFY]: faPencilAlt,
   }
+  faArrowRight = faArrowRight;
   @Input() compaings: any[] = [];
 
   constructor() { }

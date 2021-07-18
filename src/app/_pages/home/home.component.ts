@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CompaingsService} from "../../_services/compaings.service";
+import {BrandsService} from "../../_services/brands.service";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
-    public compService: CompaingsService
+    public compService: CompaingsService,
+    public brandsService: BrandsService
   ) {
   }
 
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   filter() {
+    console.log(this.searchObject);
     this.compService.filter({...this.searchObject});
   }
 
