@@ -9,10 +9,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {HttpClientModule} from "@angular/common/http";
 import {SharedGlobalModules} from "./_shared/_modules/shared-global-modules";
+import { HomeComponent } from './_pages/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
