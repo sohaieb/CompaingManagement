@@ -1,14 +1,17 @@
 import {NgModule} from "@angular/core";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
   declarations: [],
   imports: [
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FontAwesomeModule
   ],
   exports: [
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FontAwesomeModule
   ],
   providers: []
 })

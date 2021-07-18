@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-12">
+    <h3>All Requests</h3>
+  </div>
+</div>
+
+<div class="row align-middle">
+  <div class="col-1 vertical-align-items">
+    <label>Filters:</label>
+  </div>
+  <div class="col-3">
+    <input [(ngModel)]="searchObject.keyword" class="comp-control comp-input" type="text" placeholder="Enter keyword.."/>
+  </div>
+  <div class="col-3">
+    <select class="comp-control comp-input select" [(ngModel)]="searchObject.brand">
+      <option [value]="''">-</option>
+      <option *ngFor="let brand of brandsService.brands" [value]="brand.brandId">{{brand.name}}</option>
+    </select>
+  </div>
+
+  <div class="col-5" align="right">
+    <button class="comp-control comp-btn default" (click)="filter()">Filter</button>
+  </div>
+</div>
+
+<app-compaing-table [compaings]="compaings"></app-compaing-table>

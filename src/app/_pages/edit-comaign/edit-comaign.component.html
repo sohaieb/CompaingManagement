@@ -1,0 +1,69 @@
+<a routerLink="/" href="javscript:void(0)"><fa-icon [icon]="faLeftArrow"></fa-icon> back</a>
+<div [formGroup]="editRequestForm" class="p-4">
+  <div class="row mb-3">
+    <div class="col-2 vertical-align-items"><label>Brand *</label></div>
+    <div class="col-10 vertical-align-items">
+      <select class="comp-control comp-input select" formControlName="comp_brand">
+        <option [value]="''">-</option>
+        <option *ngFor="let brand of brandsService.brands" [value]="brand.brandId">{{brand.name}}</option>
+      </select>
+    </div>
+    <div class="col-12" *ngIf="editRequestForm.get('comp_brand').hasError('required')">
+      <mat-error>
+        Compaing brand is required.
+      </mat-error>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Compaign name *</label></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-12 vertical-align-items">
+      <input formControlName="campaignName" class="comp-control comp-input" type="text" placeholder="Enter Compaign name.."/>
+    </div>
+    <div class="col-12" *ngIf="editRequestForm.get('campaignName').hasError('required')">
+      <mat-error>
+        Compaing name is required.
+      </mat-error>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Media *</label></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-6" *ngFor="let media of medias">
+      <div class="row">
+        <div class="col-2">
+          <input type="checkbox" [value]="(+media.mediaId)" (change)="selectMedia($event)" [checked]="selected(media)"/>
+        </div>
+        <div class="col-10">
+          {{media.value}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="!selectedMedias.length">
+      <mat-error>
+        You should select at least one media.
+      </mat-error>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Deadline decision *</label></div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12 vertical-align-items">
+      <input formControlName="decisionDeadline" class="comp-control comp-input" type="date" />
+    </div>
+    <div class="col-12" *ngIf="editRequestForm.get('decisionDeadline').hasError('expirationDate')">
+      <mat-error>
+        You should select a future date.
+      </mat-error>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-12" align="left">
+      <button class="comp-control comp-btn default" [disabled]="editRequestForm.invalid || !selectedMedias.length" (click)="saveChanges()">Save changes</button>
+    </div>
+  </div>
+</div>
+

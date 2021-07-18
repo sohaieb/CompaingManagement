@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendURL: 'http://fake-backend-url.com'
+  backendURL: 'http://localhost:4200/assets/'
 };
 
 /*
