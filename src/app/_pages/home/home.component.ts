@@ -12,11 +12,11 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.filter();
   }
 
   filter() {
-    this.compService.filter({keyword: 'test 1', brand: 13});
+    this.compService.filter();
   }
 
 }
