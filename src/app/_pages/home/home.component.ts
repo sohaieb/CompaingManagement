@@ -8,15 +8,13 @@ import {Subscription} from "rxjs";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy{
+export class HomeComponent implements OnInit{
 
   searchObject: any = {
     keyword: '',
     brand: ''
   };
-
   compaings: any[] = [];
-  private subscription: Subscription | undefined;
 
   constructor(
     public compService: CompaingsService,
@@ -26,26 +24,13 @@ export class HomeComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(): void {
-    this.compService.initData();
     this.getCompaingsRequests();
   }
 
   private getCompaingsRequests() {
-    this.subscription = this.compService
-      .getDataLoadedObservable()
-      .subscribe(
-      comps => {
-        this.compaings = comps;
-        console.log(this.compaings);
-      }
-    );
+    this.compaings = this.compService.compaings;
   }
 
-  ngOnDestroy(): void {
-    if(this.subscription){
-      this.subscription.unsubscribe();
-    }
-  }
 
   filter() {
     this.compaings = this.compService.filter({...this.searchObject});

@@ -1,32 +1,19 @@
 import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
 import {CompaingsService} from "./compaings.service";
-import {Observable, Subject, Subscription} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediasService {
   medias: any[] = [];
-  mediaSubject = new Subject();
 
-  constructor() {}
-
-  getDataLoadedObservable(): Observable<any> {
-    return this.mediaSubject.asObservable();
+  constructor(
+    private compService: CompaingsService
+  ) {
+    this.medias = this.fillMedias(this.compService.compaings);
   }
 
-  onDataLoaded(data: any) {
-    this.mediaSubject.next(data);
-  }
-
-  /**
-   * Get all unique medias
-   */
-  initData(data: any) {
-    this.medias = this.fillMedias(data);
-    this.onDataLoaded(this.medias);
-
-  }
 
   /**
    * Get unique medias and assign it to global array

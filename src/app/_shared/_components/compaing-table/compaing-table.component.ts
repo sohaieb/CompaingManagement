@@ -8,7 +8,7 @@ import {
   faPencilAlt,
   faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
-import * as moment from 'moment';
+import moment from 'moment';
 import {CompaingStatusEnum} from "../../../_constants/CompaingStatusEnum";
 @Component({
   selector: 'app-compaing-table',

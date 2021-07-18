@@ -3,40 +3,16 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import { map} from "rxjs/operators";
 import {Observable, Subject} from "rxjs";
+import CompaingRequests from '../../assets/payload-rmp.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompaingsService {
-  url = `${environment.backendURL}payload-rmp.json`;
   compaings: any = [];
-  dataLoadedSubscription = new Subject();
 
-  constructor(
-    private http: HttpClient
-    ) {
-  }
-
-  getDataLoadedObservable(): Observable<any> {
-    return this.dataLoadedSubscription.asObservable();
-  }
-
-  onDataLoaded(data: any) {
-    this.dataLoadedSubscription.next(data);
-  }
-
-  /**
-   * Load data from file and send signal when load finshed
-   */
-  initData(){
-    this.http.get(this.url)
-      .pipe(
-        map((result: any) => result.requests)
-      )
-      .subscribe(comps => {
-        this.compaings = comps;
-        this.onDataLoaded(this.compaings);
-      });
+  constructor() {
+    this.compaings = CompaingRequests.requests;
   }
 
   /**
