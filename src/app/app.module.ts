@@ -11,12 +11,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedGlobalModules} from "./_shared/_modules/shared-global-modules";
 import { HomeComponent } from './_pages/home/home.component';
 import { CompaingTableComponent } from './_shared/_components/compaing-table/compaing-table.component';
+import { EditComaignComponent } from './_pages/edit-comaign/edit-comaign.component';
+import {CompaingsService} from "./_services/compaings.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CompaingTableComponent
+    CompaingTableComponent,
+    EditComaignComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { CompaingTableComponent } from './_shared/_components/compaing-table/com
     HttpClientModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [CompaingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

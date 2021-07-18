@@ -12,7 +12,7 @@
 </div>
 
 
-<div *ngFor="let compaing of compaings" class="row mt-3 mb-3 table-row">
+<div *ngFor="let compaing of compaings" class="row mt-3 mb-3 table-row cursor-pointer" [routerLink]="['/edit', compaing.requestId]">
   <div class="col-12">
     <div class="row table-row-content">
         <div class="col-2 text-center table-row-content-status" [class]="getClass(compaing)">
