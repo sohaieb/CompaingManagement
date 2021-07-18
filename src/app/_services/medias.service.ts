@@ -30,4 +30,11 @@ export class MediasService {
     });
     return medias;
   }
+
+  /**
+   * Get medias objects by ids
+   */
+  getMediasFromIDS(arrayOfIds: any[]) {
+    return this.medias.filter(media => arrayOfIds.some(x => x == media.mediaId));
+  }
 }

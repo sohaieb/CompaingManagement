@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import { map} from "rxjs/operators";
-import {Observable, Subject} from "rxjs";
 import CompaingRequests from '../../assets/payload-rmp.json';
+import {BrandsService} from "./brands.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +9,9 @@ import CompaingRequests from '../../assets/payload-rmp.json';
 export class CompaingsService {
   compaings: any = [];
 
-  constructor() {
+  constructor(
+    private brandService: BrandsService
+  ) {
     this.compaings = CompaingRequests.requests;
   }
 
@@ -21,7 +21,7 @@ export class CompaingsService {
    * @param params
    */
   filter(params: { keyword?: string, brand?: any } = {keyword: '', brand: ''}) {
-    return this.compaings.filter((comp: any) => comp.campaignName.toLowerCase().includes(params.keyword) && (!params.brand || comp.brand.brandId == params.brand));
+    return this.compaings.filter((comp: any) => comp.campaignName.toLowerCase().includes(params.keyword) && (!params.brand || comp.brand?.brandId == params.brand));
   }
 
   /**
@@ -39,7 +39,13 @@ export class CompaingsService {
    * @param compaingRequest
    */
   update(compaingRequest: any) {
-    let index = this.compaings.findIndex((comp:any) => comp.requestId == compaingRequest.id);
-    this.compaings[index] = {...this.compaings[index], ...compaingRequest};
+    let index = this.compaings.findIndex((comp:any) => comp.requestId == compaingRequest.requestId);
+    let brand = !compaingRequest.comp_brand?null:this.brandService.getById(compaingRequest.comp_brand);
+    this.compaings[index] = {
+      ...this.compaings[index],
+      ...compaingRequest,
+      brand,
+      media: compaingRequest.comp_media
+    };
   }
 }

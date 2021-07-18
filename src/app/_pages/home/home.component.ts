@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompaingsService} from "../../_services/compaings.service";
 import {BrandsService} from "../../_services/brands.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-home',

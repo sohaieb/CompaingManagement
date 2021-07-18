@@ -27,7 +27,7 @@
            class="col-1 text-center table-row-content-type">
         {{compaing.advice? 'Advice': 'Request'}}
       </div>
-      <div class="col-3 text-center table-row-content-brand">{{compaing.brand.name}}</div>
+      <div class="col-3 text-center table-row-content-brand">{{compaing.brand && compaing.brand.name || '-'}}</div>
       <div class="col-2 text-center table-row-content-submissions">{{compaing.submittedDate?formattedDate(compaing.submittedDate):'-'}}</div>
       <div class="col-1 text-center font-weight-bold table-row-content-right-arrow">
         <fa-icon [icon]="faArrowRight" class="font-size-2-rem"></fa-icon>

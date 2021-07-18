@@ -2,11 +2,11 @@ import {Component,  OnInit} from '@angular/core';
 import {MediasService} from "../../_services/medias.service";
 import {CompaingsService} from "../../_services/compaings.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { FormBuilder, Validators} from "@angular/forms";
 import {BrandsService} from "../../_services/brands.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import * as moment from "moment";
 import {formatDate} from "@angular/common";
+import {validDate} from "../../_custom_validators/CustomValidators";
 
 @Component({
   selector: 'app-edit-comaign',
@@ -15,6 +15,7 @@ import {formatDate} from "@angular/common";
 })
 export class EditComaignComponent implements OnInit {
   medias: any[] = [];
+  selectedMedias: any[] = [];
   editRequestForm: any;
   private requestCompaign: any;
   faLeftArrow = faArrowLeft;
@@ -31,7 +32,6 @@ export class EditComaignComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
     this.setMedias();
   }
 
@@ -41,33 +41,73 @@ export class EditComaignComponent implements OnInit {
    */
   private setMedias() {
     this.medias = this.mediaService.medias;
+    this.initForm();
     this.loadParams();
-    this.editRequestForm.setValue({
-      comp_brand: this.requestCompaign.brand.brandId,
+    this.setFormValues();
+  }
+
+  /**
+   * Set form values from loaded model
+   *
+   * @private
+   */
+  private setFormValues() {
+    this.editRequestForm.patchValue({
+      comp_brand: this.requestCompaign.brand?.brandId || '',
       campaignName: this.requestCompaign.campaignName,
-      comp_media: [],
       decisionDeadline: formatDate(this.requestCompaign.decisionDeadline, 'yyyy-MM-dd', 'en')
     });
+    this.selectedMedias = this.requestCompaign.media.map((media: any) => media.mediaId);
   }
 
+  /**
+   * Init request form
+   */
   initForm() {
     this.editRequestForm = this.fb.group({
-      comp_brand: [this.requestCompaign ? this.requestCompaign.brand.brandId : null],
-      campaignName: [this.requestCompaign ? this.requestCompaign.campaignName : null],
-      comp_media: [],
-      decisionDeadline: [this.requestCompaign ? this.requestCompaign.decisionDeadline : null]
+      comp_brand: [this.requestCompaign ? this.requestCompaign.brand.brandId : null, [Validators.required]],
+      campaignName: [this.requestCompaign ? this.requestCompaign.campaignName : null, [Validators.required]],
+      decisionDeadline: [this.requestCompaign ? this.requestCompaign.decisionDeadline : null, [Validators.required, validDate()]]
     });
   }
 
-
+  /**
+   * Load route params and passed id
+   *
+   * @private
+   */
   private loadParams() {
     let id = this.route.snapshot.paramMap.get('id');
     this.requestCompaign = this.compaingService.getById(id);
   }
 
+  /**
+   * Save form changes to model
+   */
   saveChanges() {
-    let body = {...this.editRequestForm.value, id: this.requestCompaign.id};
+    let body = {...this.editRequestForm.value, requestId: this.requestCompaign.requestId};
+    body.comp_media = this.mediaService.getMediasFromIDS(this.selectedMedias);
     this.compaingService.update(body);
     this.router.navigate(['/']);
+  }
+
+  /**
+   * Check checked checkbox status and update selected
+   * medias array
+   *
+   * @param $event
+   */
+  selectMedia($event: any) {
+    let target = $event.target;
+    if(target.checked){
+      this.selectedMedias.push(target.value);
+    }else{
+      let index = this.selectedMedias.findIndex((media: any) => target.value == media);
+      this.selectedMedias.splice(index,1);
+    }
+  }
+
+  selected(media: any) {
+    return this.selectedMedias.some((x: any) => media.mediaId == x);
   }
 }
