@@ -34,7 +34,10 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.subscription = this.compService
       .getDataLoadedObservable()
       .subscribe(
-      comps => this.compaings = comps
+      comps => {
+        this.compaings = comps;
+        console.log(this.compaings);
+      }
     );
   }
 

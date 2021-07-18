@@ -56,4 +56,14 @@ export class CompaingsService {
   getById(requestId: any) {
     return this.compaings.find((comp:any) => comp.requestId == requestId);
   }
+
+  /**
+   * Update compaing request
+   *
+   * @param compaingRequest
+   */
+  update(compaingRequest: any) {
+    let index = this.compaings.findIndex((comp:any) => comp.requestId == compaingRequest.id);
+    this.compaings[index] = {...this.compaings[index], ...compaingRequest};
+  }
 }

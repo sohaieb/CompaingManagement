@@ -1,1 +1,49 @@
-<p *ngFor="let media of medias">{{media.name}}</p>
+<a routerLink="/" href="javscript:void(0)"><fa-icon [icon]="faLeftArrow"></fa-icon> back</a>
+<div [formGroup]="editRequestForm" class="p-4">
+  <div class="row mb-3">
+    <div class="col-2 vertical-align-items"><label>Brand *</label></div>
+    <div class="col-10 vertical-align-items">
+      <select class="comp-control comp-input select" formControlName="comp_brand">
+        <option [value]="''">-</option>
+        <option *ngFor="let brand of brandsService.brands" [value]="brand.brandId">{{brand.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Compaign name *</label></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-12 vertical-align-items">
+      <input formControlName="campaignName" class="comp-control comp-input" type="text" placeholder="Enter Compaign name.."/>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Media *</label></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-6" *ngFor="let brand of brandsService.brands">
+      <div class="row">
+        <div class="col-2">
+          <input formControlName="comp_media" type="checkbox"/>
+        </div>
+        <div class="col-10">
+          {{brand.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5 mb-1">
+    <div class="col-2 vertical-align-items"><label>Deadline decision *</label></div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12 vertical-align-items">
+      <input formControlName="decisionDeadline" class="comp-control comp-input" type="date" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-12" align="left">
+      <button class="comp-control comp-btn default" [disabled]="editRequestForm.invalid" (click)="saveChanges()">Save changes</button>
+    </div>
+  </div>
+</div>
+
