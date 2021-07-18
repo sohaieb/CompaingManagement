@@ -3,6 +3,13 @@ $table-row-height:                            100px;
 $table-row-radius:                            10px;
 $table-row-background:                        #f2f9ff;
 $table-row-content-status-border-right:       2px solid #cdd2d6;
+$status-color-draft:                          #9a9a9e;
+$status-color-rejected:                       #e28e9c;
+$status-color-submitted:                      #80ad9f;
+$status-color-to-modify:                      #d9b47e;
+$status-color-to-review:                      #6f7282;
+$status-color-validated:                      #05ce8c;
+
 /* Styles definition */
 .table-row {
   height: $table-row-height;
@@ -17,12 +24,35 @@ $table-row-content-status-border-right:       2px solid #cdd2d6;
       display: flex;
       flex-direction: column;
       border-right: $table-row-content-status-border-right;
+      &.status-1{
+        color: $status-color-draft;
+      }
+      &.status-2{
+        color: $status-color-rejected;
+      }
+      &.status-3{
+        color: $status-color-submitted;
+      }
+      &.status-4{
+        color: $status-color-to-modify;
+      }
+      &.status-5{
+        color: $status-color-to-review;
+      }
+      &.status-6{
+        color: $status-color-validated;
+      }
       .status-icon fa-icon.font-size-2-rem {
         font-size: 2rem;
       }
     }
     .table-row-content-name{
       font-weight: 500;
+    }
+    .table-row-content-right-arrow {
+      fa-icon.font-size-2-rem {
+        font-size: 2rem;
+      }
     }
     .table-row-content-type{
       padding: 5px;

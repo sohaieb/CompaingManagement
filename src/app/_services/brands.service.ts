@@ -1,10 +1,22 @@
-import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import Brands from '../../assets/brands.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrandsService {
-  url = `${environment.backendURL}brands.json`;
-  constructor() { }
+  brands: any[] = [];
+
+  constructor() {
+    this.brands = Brands;
+  }
+
+  /**
+   * Get brand by id
+   *
+   * @param id
+   */
+  getById(id: any) {
+    return this.brands.find(brand => brand.brandId == id);
+  }
 }

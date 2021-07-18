@@ -9,18 +9,18 @@
     <label>Filters:</label>
   </div>
   <div class="col-3">
-    <input class="comp-control comp-input" type="text" placeholder="Enter keyword.."/>
+    <input [(ngModel)]="searchObject.keyword" class="comp-control comp-input" type="text" placeholder="Enter keyword.."/>
   </div>
   <div class="col-3">
-    <select class="comp-control comp-input select">
-      <option></option>
-      <option></option>
+    <select class="comp-control comp-input select" [(ngModel)]="searchObject.brand">
+      <option [value]="''">-</option>
+      <option *ngFor="let brand of brandsService.brands" [value]="brand.brandId">{{brand.name}}</option>
     </select>
   </div>
 
   <div class="col-5" align="right">
-    <button class="comp-control comp-btn default">Filter</button>
+    <button class="comp-control comp-btn default" (click)="filter()">Filter</button>
   </div>
 </div>
 
-<app-compaing-table></app-compaing-table>
+<app-compaing-table [compaings]="compaings"></app-compaing-table>
