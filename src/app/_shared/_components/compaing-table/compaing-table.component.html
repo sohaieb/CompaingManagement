@@ -20,13 +20,13 @@
             </div>
             <div class="status-text">{{compaing.requestStatus.value}}</div>
         </div>
-      <div class="col-3 table-row-content-name">Name</div>
+      <div class="col-3 table-row-content-name">{{compaing.campaignName}}</div>
       <div [class.advice]="compaing.advice"
            [class.request]="!compaing.advice"
            class="col-1 text-center table-row-content-type">
         {{compaing.advice? 'Advice': 'Request'}}
       </div>
-      <div class="col-3 text-center table-row-content-brand">{{compaing.advice.name}}</div>
+      <div class="col-3 text-center table-row-content-brand">{{compaing.brand.name}}</div>
       <div class="col-3 text-center table-row-content-submissions">{{compaing.submittedDate?formattedDate(compaing.submittedDate):'-'}}</div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompaingsService} from "../../_services/compaings.service";
 
 @Component({
@@ -7,16 +7,22 @@ import {CompaingsService} from "../../_services/compaings.service";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  searchObject: any = {
+    keyword: '',
+    brand: ''
+  };
+
   constructor(
     public compService: CompaingsService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.filter();
   }
 
   filter() {
-    this.compService.filter();
+    this.compService.filter({...this.searchObject});
   }
 
 }
